@@ -1,0 +1,1305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7B5BF993-A446-4271-B5B6-48C1C09BDDC8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>ARMAZEM.My.MyApplication</StartupObject>
+    <RootNamespace>ARMAZEM</RootNamespace>
+    <AssemblyName>ARMAZEM</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>http://localhost/usandoclickonce/</PublishUrl>
+    <Install>false</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>pt-BR</TargetCulture>
+    <ProductName>Sofrware de controle de estoque e serviços</ProductName>
+    <PublisherName>wrosistemas</PublisherName>
+    <MinimumRequiredVersion>1.0.0.6</MinimumRequiredVersion>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsUrl>C:\Documents and Settings\w\Meus documentos\Downloads</BootstrapperComponentsUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ARMAZEM.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>ARMAZEM.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>cup_coffee.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>ARMAZEM.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\ARMAZEM.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;D:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>ARMAZEM.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\ARMAZEM.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;D:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B40E0E118A73258048D4E14E482DCD1D6B2FF1EA</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ARMAZEM_2_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>ARMAZEM.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\ARMAZEM.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>ARMAZEM.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\ARMAZEM.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ARMAZEM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="ARMAZEM.My.Resources" />
+    <Import Include="CrystalDecisions.CrystalReports.Engine" />
+    <Import Include="CrystalDecisions.ReportAppServer" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcessoBD.vb" />
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="frmReportFinanceirogerenciaGrade.Designer.vb">
+      <DependentUpon>frmReportFinanceirogerenciaGrade.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportFinanceirogerenciaGrade.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinanceiroGerenciaGrade.Designer.vb">
+      <DependentUpon>frmFinanceiroGerenciaGrade.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFinanceiroGerenciaGrade.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportFinanceiroPorMes.Designer.vb">
+      <DependentUpon>frmReportFinanceiroPorMes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportFinanceiroPorMes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinanceiroPorMes.Designer.vb">
+      <DependentUpon>frmFinanceiroPorMes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFinanceiroPorMes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="financeirogerencia6.vb">
+      <DependentUpon>financeirogerencia6.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entrada_diaria.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entrada_diaria.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmReportEntradaDiaria.Designer.vb">
+      <DependentUpon>frmReportEntradaDiaria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportEntradaDiaria.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportEntradaDiariaEscolha.Designer.vb">
+      <DependentUpon>frmReportEntradaDiariaEscolha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportEntradaDiariaEscolha.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="financeirogerencia4.vb">
+      <DependentUpon>financeirogerencia4.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="financeirogerencia3.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>financeirogerencia3.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="financeirogerencia5.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>financeirogerencia5.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmReportFinanceirogerenciaPorTipoGrid.Designer.vb">
+      <DependentUpon>frmReportFinanceirogerenciaPorTipoGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportFinanceirogerenciaPorTipoGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinanceiroGerenciaPorTipoGrid.Designer.vb">
+      <DependentUpon>frmFinanceiroGerenciaPorTipoGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFinanceiroGerenciaPorTipoGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EstoquePorClienteNota.vb">
+      <DependentUpon>EstoquePorClienteNota.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="frmEstoqueRetroativo.Designer.vb">
+      <DependentUpon>frmEstoqueRetroativo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEstoqueRetroativo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEstoqueRetroativoRel.Designer.vb">
+      <DependentUpon>frmEstoqueRetroativoRel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEstoqueRetroativoRel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportEstoqueClienteEscolha.Designer.vb">
+      <DependentUpon>frmReportEstoqueClienteEscolha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportEstoqueClienteEscolha.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EstoquePorCliente.vb">
+      <DependentUpon>EstoquePorCliente.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="frmReportEstoqueCliente.Designer.vb">
+      <DependentUpon>frmReportEstoqueCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportEstoqueCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dbDataSet_INDUSTRIALIZAÇAO1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbDataSet_INDUSTRIALIZAÇAO.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FichaEntrada_old.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FichaEntrada_old.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmEntrada.designer.vb">
+      <DependentUpon>frmEntrada.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEntrada.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Historico_lotes.vb">
+      <DependentUpon>Historico_lotes.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="EstoqueRetroativo.vb">
+      <DependentUpon>EstoqueRetroativo.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmReportEstoqueRetroativo.Designer.vb">
+      <DependentUpon>frmReportEstoqueRetroativo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportEstoqueRetroativo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMovimentaçao_Depositante.Designer.vb">
+      <DependentUpon>frmMovimentaçao_Depositante.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovimentaçao_Depositante.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EstoqueOrdemFE.vb">
+      <DependentUpon>EstoqueOrdemFE.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="frmMovimentaçao.Designer.vb">
+      <DependentUpon>frmMovimentaçao.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovimentaçao.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportEstoqueOrdemFE.Designer.vb">
+      <DependentUpon>frmReportEstoqueOrdemFE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportEstoqueOrdemFE.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBuscaLotes.Designer.vb">
+      <DependentUpon>frmBuscaLotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuscaLotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDadosEmpresa.designer.vb">
+      <DependentUpon>frmDadosEmpresa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDadosEmpresa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDepositante.designer.vb">
+      <DependentUpon>frmDepositante.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDepositante.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIndustrializacao.Designer.vb">
+      <DependentUpon>frmIndustrializacao.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmIndustrializacao.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIndustrializacaoRel.Designer.vb">
+      <DependentUpon>frmIndustrializacaoRel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmIndustrializacaoRel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportFinanceirogerenciaPorTipo.Designer.vb">
+      <DependentUpon>frmReportFinanceirogerenciaPorTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportFinanceirogerenciaPorTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinanceiroGerenciaPorTipo.Designer.vb">
+      <DependentUpon>frmFinanceiroGerenciaPorTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFinanceiroGerenciaPorTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="financeirogerencia2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>financeirogerencia2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmFinanceiroGerencia.Designer.vb">
+      <DependentUpon>frmFinanceiroGerencia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFinanceiroGerencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportFinanceirogerencia.Designer.vb">
+      <DependentUpon>frmReportFinanceirogerencia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportFinanceirogerencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="financeirogerencia.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>financeirogerencia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmSenhas.designer.vb">
+      <DependentUpon>frmSenhas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSenhas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="financeiroresumido2.vb">
+      <DependentUpon>financeiroresumido2.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="GridCalendar.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GridTab.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="financeiroresumido.vb">
+      <DependentUpon>financeiroresumido.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="frmRetirada.Designer.vb">
+      <DependentUpon>frmRetirada.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRetirada.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.vb">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPermissoes.Designer.vb">
+      <DependentUpon>frmPermissoes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPermissoes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="movimentacao.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>movimentacao.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Retirada.vb">
+      <DependentUpon>Retirada.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmReportRetirada.Designer.vb">
+      <DependentUpon>frmReportRetirada.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportRetirada.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <None Include="ARMAZEM SETUP">
+      <SubType>Form</SubType>
+    </None>
+    <Compile Include="frmReportEstoque.Designer.vb">
+      <DependentUpon>frmReportEstoque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportEstoque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Estoque.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estoque.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="frmReportFinanceiro.Designer.vb">
+      <DependentUpon>frmReportFinanceiro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportFinanceiro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinanceiro.Designer.vb">
+      <DependentUpon>frmFinanceiro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFinanceiro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="financeiro2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>financeiro.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="frmReportServico.Designer.vb">
+      <DependentUpon>frmReportServico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportServico.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServico.designer.vb">
+      <DependentUpon>frmServico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmServico.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSacaria.designer.vb">
+      <DependentUpon>frmSacaria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSacaria.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOperacaoCobranca.designer.vb">
+      <DependentUpon>frmOperacaoCobranca.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmOperacaoCobranca.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCobranca.designer.vb">
+      <DependentUpon>frmCobranca.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCobranca.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOperacao.designer.vb">
+      <DependentUpon>frmOperacao.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmOperacao.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrigem.designer.vb">
+      <DependentUpon>frmOrigem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrigem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servico.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Servico.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FichaEntrada.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FichaEntrada.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="frmBusca.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBusca.Designer.vb">
+      <DependentUpon>frmBusca.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportEntrada.Designer.vb">
+      <DependentUpon>frmReportEntrada.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportEntrada.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio.Designer.vb">
+      <DependentUpon>Inicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Principal.vb" />
+    <Compile Include="Tipos.vb" />
+    <Compile Include="valida_CNPJ_CPF.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmReportFinanceirogerenciaGrade.resx">
+      <DependentUpon>frmReportFinanceirogerenciaGrade.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinanceiroGerenciaGrade.resx">
+      <DependentUpon>frmFinanceiroGerenciaGrade.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportFinanceiroPorMes.resx">
+      <DependentUpon>frmReportFinanceiroPorMes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinanceiroPorMes.resx">
+      <DependentUpon>frmFinanceiroPorMes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="financeirogerencia6.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>financeirogerencia6.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entrada_diaria.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Entrada_diaria.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportEntradaDiaria.resx">
+      <DependentUpon>frmReportEntradaDiaria.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportEntradaDiariaEscolha.resx">
+      <DependentUpon>frmReportEntradaDiariaEscolha.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="financeirogerencia4.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>financeirogerencia4.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="financeirogerencia3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>financeirogerencia3.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="financeirogerencia5.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>financeirogerencia5.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportFinanceirogerenciaPorTipoGrid.resx">
+      <DependentUpon>frmReportFinanceirogerenciaPorTipoGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinanceiroGerenciaPorTipoGrid.resx">
+      <DependentUpon>frmFinanceiroGerenciaPorTipoGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EstoquePorClienteNota.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EstoquePorClienteNota.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEstoqueRetroativo.resx">
+      <DependentUpon>frmEstoqueRetroativo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEstoqueRetroativoRel.resx">
+      <DependentUpon>frmEstoqueRetroativoRel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportEstoqueClienteEscolha.resx">
+      <DependentUpon>frmReportEstoqueClienteEscolha.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EstoquePorCliente.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EstoquePorCliente.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportEstoqueCliente.resx">
+      <DependentUpon>frmReportEstoqueCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FichaEntrada_old.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FichaEntrada_old.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEntrada.resx">
+      <DependentUpon>frmEntrada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Historico_lotes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Historico_lotes.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EstoqueRetroativo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EstoqueRetroativo.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportEstoqueRetroativo.resx">
+      <DependentUpon>frmReportEstoqueRetroativo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMovimentaçao_Depositante.resx">
+      <DependentUpon>frmMovimentaçao_Depositante.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EstoqueOrdemFE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EstoqueOrdemFE.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMovimentaçao.resx">
+      <DependentUpon>frmMovimentaçao.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportEstoqueOrdemFE.resx">
+      <DependentUpon>frmReportEstoqueOrdemFE.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBuscaLotes.resx">
+      <DependentUpon>frmBuscaLotes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDadosEmpresa.resX">
+      <DependentUpon>frmDadosEmpresa.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDepositante.resx">
+      <DependentUpon>frmDepositante.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIndustrializacao.resx">
+      <DependentUpon>frmIndustrializacao.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIndustrializacaoRel.resx">
+      <DependentUpon>frmIndustrializacaoRel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportFinanceirogerenciaPorTipo.resx">
+      <DependentUpon>frmReportFinanceirogerenciaPorTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinanceiroGerenciaPorTipo.resx">
+      <DependentUpon>frmFinanceiroGerenciaPorTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="financeirogerencia2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>financeirogerencia2.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinanceiroGerencia.resx">
+      <DependentUpon>frmFinanceiroGerencia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportFinanceirogerencia.resx">
+      <DependentUpon>frmReportFinanceirogerencia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="financeirogerencia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>financeirogerencia.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSenhas.resX">
+      <DependentUpon>frmSenhas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="financeiroresumido2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>financeiroresumido2.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="financeiroresumido.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>financeiroresumido.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRetirada.resx">
+      <DependentUpon>frmRetirada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPermissoes.resx">
+      <DependentUpon>frmPermissoes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="movimentacao.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>movimentacao.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="report_INDUSTRIALIZAÇAO.rdlc" />
+    <EmbeddedResource Include="Retirada.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Retirada.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportRetirada.resx">
+      <DependentUpon>frmReportRetirada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportEstoque.resx">
+      <DependentUpon>frmReportEstoque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Estoque.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Estoque.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportFinanceiro.resx">
+      <DependentUpon>frmReportFinanceiro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinanceiro.resx">
+      <DependentUpon>frmFinanceiro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="financeiro.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>financeiro2.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportServico.resx">
+      <DependentUpon>frmReportServico.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServico.resX">
+      <DependentUpon>frmServico.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSacaria.resX">
+      <DependentUpon>frmSacaria.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOperacaoCobranca.resX">
+      <DependentUpon>frmOperacaoCobranca.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCobranca.resX">
+      <DependentUpon>frmCobranca.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOperacao.resX">
+      <DependentUpon>frmOperacao.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOrigem.resX">
+      <DependentUpon>frmOrigem.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Servico.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Servico.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FichaEntrada.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FichaEntrada.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBusca.resx">
+      <DependentUpon>frmBusca.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportEntrada.resx">
+      <DependentUpon>frmReportEntrada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicio.resX">
+      <DependentUpon>Inicio.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dbDataSet_INDUSTRIALIZAÇAO.xsc">
+      <DependentUpon>dbDataSet_INDUSTRIALIZAÇAO.xsd</DependentUpon>
+    </None>
+    <None Include="dbDataSet_INDUSTRIALIZAÇAO.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbDataSet_INDUSTRIALIZAÇAO1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbDataSet_INDUSTRIALIZAÇAO.xss">
+      <DependentUpon>dbDataSet_INDUSTRIALIZAÇAO.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="SAP.CrystalReports14.NET.2.0">
+      <Visible>False</Visible>
+      <ProductName>SAP Crystal Reports Runtime Engine for .NET Framework 4.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cup_coffee.ico" />
+    <Content Include="db.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="ARMAZEM.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="ARMAZEM.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.CrystalReports.Engine">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.ClientDoc">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.CommLayer">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.CommonControls">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.CommonObjectModel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.Controllers">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.CubeDefModel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.DataDefModel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.DataSetConversion">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.ObjectFactory">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.Prompting">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.ReportDefModel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportAppServer.XmlSerialize">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportSource">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.Shared">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.Windows.Forms">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="FlashControlV71">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="log4net">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="ShockwaveFlashObjects">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="stdole">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="CrystalAnalysisCommLayerLib">
+      <Guid>{AAA3345B-2177-4D19-8D75-21688FE36251}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="CrystalAnalysisCommonControlsLib">
+      <Guid>{E377F909-BCFE-4E8E-B17C-8B1CBC7C7243}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="CrystalClientDocLib">
+      <Guid>{A8E20FDA-4A89-4545-8DFF-EBFA68E8C0F9}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="CrystalReportsCommonObjectModelLib">
+      <Guid>{FDB9B69E-BA79-4B13-9E96-8373AF162AEA}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="CrystalReportsControllersLib">
+      <Guid>{FA810FF5-70DA-4F98-A5E3-387D9577EF24}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="CrystalReportsCubeDefModelLib">
+      <Guid>{44AD71D4-4905-491D-B179-B5D91EB57374}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="CrystalReportsDataDefModelLib">
+      <Guid>{9B2F3E7B-8D45-47E8-95D3-3A9C1B22437F}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="CrystalReportsReportDefModelLib">
+      <Guid>{BF40B97D-06EA-4AB1-91DE-18CB29A2B25A}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

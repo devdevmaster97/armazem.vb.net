@@ -1,0 +1,960 @@
+Imports System.Data.OleDb
+Imports System.Windows.Forms
+Imports System.Globalization.CultureInfo
+Imports System.String
+Imports ARMAZEM.Principal
+
+Friend Class frmRetirada
+    Inherits System.Windows.Forms.Form
+    <STAThreadAttribute()> _
+    Public Shared Sub Main()
+        Application.Run(New frmRetirada())
+    End Sub
+    Dim altera As Boolean
+    Dim tabela_db As String = "RETIRADA"
+    Dim cadastrando As Boolean
+    Dim codigo_depositante As Integer
+    Dim id_retirada As Integer
+    Dim controle_soma As Boolean
+    Dim ui As Int32
+
+    Dim dt As New DataTable
+
+    Dim dai2 As New OleDbDataAdapter
+    Dim dsi2 As New DataSet
+
+    Dim dasc1 As New OleDbDataAdapter 'usado no gridsacaria com combobox
+    Dim dssc1 As New DataSet 'usado no gridsacaria com combobox
+
+    Dim dasc2 As New OleDbDataAdapter 'usado no gridsacaria com combobox
+    Dim dssc2 As New DataSet 'usado no grid com combobox
+
+    '***********RETIRADA************************
+    Dim da As New OleDbDataAdapter            '*
+    Dim ds As New DataSet                     '*  
+    Dim dr As DataRow                         '*
+    '***********LOTES***************************
+    Dim dai As New OleDbDataAdapter           '*
+    Dim dsi As New DataSet                    '*  
+    Dim dri() As DataRow                      '*
+    '***********DEPOSITANTE*********************
+    Dim dadepo As New OleDbDataAdapter        '*
+    Dim dsdepo As New DataSet                 '*
+    Dim drdepo As DataRow                     '*
+    '***********CAMINHOES***********************
+    Dim da_camin As New OleDbDataAdapter      '*
+    Dim ds_camin As New DataSet               '*
+    Dim dr_camin() As DataRow                 '*  
+    '***********SERVICO_OPERACAO****************
+    Dim da_ser_oper As New OleDbDataAdapter   '*
+    Dim ds_ser_oper As New DataSet            '*
+    Dim dr_ser_oper() As DataRow              '*
+    '*******************************************
+    '****************OPERACAO*******************
+    Dim da_oper As New OleDbDataAdapter       '*
+    Dim ds_oper As New DataSet                '*
+    Dim dr_oper() As DataRow                  '*
+    '*******************************************
+    '****************COBRANCA*******************
+    Dim da_cob As New OleDbDataAdapter        '*
+    Dim ds_cob As New DataSet                 '*
+    Dim dr_cob() As DataRow                   '*
+    '*******************************************
+    '**********BUSCA SERVICO OPERACAO***********
+    Dim da_bso As New OleDbDataAdapter        '*
+    Dim ds_bso As New DataSet                 '*
+    Dim dr_bso() As DataRow                   '*
+    '*******************************************
+    '***********qOPERACAO_COBRANCA**************
+    Dim da_oper_cob As New OleDbDataAdapter   '*
+    Dim ds_oper_cob As New DataSet            '*
+    Dim dr_oper_cob() As DataRow              '*
+    '*******************************************
+    '***********BUSCA OS IDS OPERACAO***********
+    Dim da_operX As New OleDbDataAdapter      '*
+    Dim ds_operX As New DataSet               '*
+    Dim dr_operX() As DataRow                 '*
+    '*******************************************
+    '***********BUSCA OS IDS OPERADOR***********
+    Dim da_cobX As New OleDbDataAdapter       '*
+    Dim ds_cobX As New DataSet                '*
+    Dim dr_cobX() As DataRow                  '*
+    '*******************************************
+    '**************LOTES RETIRADA***************
+    Dim da_le As New OleDbDataAdapter         '*
+    Dim ds_le As New DataSet                  '*
+    Dim dr_le() As DataRow                    '*
+    Dim dr_iten_entrada As DataRow            '*
+    '*******************************************
+    '**************** ENTRADA*******************
+    Dim da_en As New OleDbDataAdapter         '*
+    Dim ds_en As New DataSet                  '*
+    Dim dr_en() As DataRow                    '*
+    Dim dr_entrada As DataRow                 '*
+    '*******************************************
+    '***********SERVICO_OPERACAO**********************
+    Dim da_servico_operacao As New OleDbDataAdapter '*
+    Dim ds_servico_operacao As New DataSet          '*
+    Dim dr_servico_operacao As DataRow              '*
+    '*************************************************
+    Dim dr_lotes() As DataRow ' somente para atualizar os lotes
+
+
+    Private Sub cmdConsultar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdConsultar.Click
+        Cursor.Current = Cursors.WaitCursor
+        '*******************************PARAMETROS DA BUSCA***************************
+        Busca.Criterio = New TCriterio(4) {}
+        Busca.Ncolunas = 4
+        Busca.NumCrite = 6
+        Busca.Numcampoinicial = 0
+        Busca.Ordem = "RE"
+        Busca.OrdemAD = "DESC"
+
+        Busca.Criterio(0).Nome = "RE"
+        Busca.Criterio(0).Campo = "RE"
+        Busca.Criterio(0).Alinha = DataGridViewContentAlignment.MiddleCenter
+        Busca.Criterio(0).Numerico = False
+        Busca.Criterio(0).LargCol = 50
+        Busca.Criterio(0).Data = False
+        Busca.Criterio(0).Formato = ""
+
+        Busca.Criterio(1).Nome = "DATA"
+        Busca.Criterio(1).Campo = "DATA"
+        Busca.Criterio(1).Alinha = DataGridViewContentAlignment.MiddleCenter
+        Busca.Criterio(1).Numerico = False
+        Busca.Criterio(1).LargCol = 70
+        Busca.Criterio(1).Data = True
+        Busca.Criterio(1).Formato = "dd/MM/yyyy"
+
+        Busca.Criterio(2).Nome = "NOME DEPOSITANTE"
+        Busca.Criterio(2).Campo = "NOME_DEPOSITANTE"
+        Busca.Criterio(2).Alinha = DataGridViewContentAlignment.MiddleLeft
+        Busca.Criterio(2).Numerico = False
+        Busca.Criterio(2).LargCol = 300
+        Busca.Criterio(2).Data = False
+        Busca.Criterio(2).Formato = ""
+        '***************************************************************************
+        cn = GetConnection()
+        CriterioBusca = "XXX"
+        Arquivo = "qRETIRADA"
+        col_ini_busca = 0
+        frmbusca.ShowDialog()
+        If CriterioBusca <> "XXX" Then
+            '********* PREENCHE O DATASET RETIRADA *********************************************
+            ds.Clear()
+            sql(0) = "SELECT * FROM " & tabela_db & ""
+            Dim cm As New OleDbCommand(sql(0), cn)
+            da = New OleDbDataAdapter(cm)
+            da.Fill(ds, tabela_db)
+            dr = ds.Tables(tabela_db).Select("ID_RETIRADA = " & CriterioBusca & "")(0) 'BUSCA A ENTRADA
+            altera = True
+            limpa(Me)
+            Visualizando()
+            estadobotao("exibido")
+            '********* PREENCHE O DATASET RETIRADA_LOTES ***************************************
+            If DGVLotes.Rows.Count > 0 Then dsi.Tables(0).Clear()
+            sql(0) = "SELECT * FROM RETIRADA_LOTES WHERE ID_RETIRADA =" & CriterioBusca & ""
+            Dim cmi As New OleDbCommand(sql(0), cn)
+            dai = New OleDbDataAdapter(cmi)
+            dai.Fill(dsi, "RETIRADA_LOTES")
+            dsi.Tables(0).PrimaryKey = New DataColumn() {dsi.Tables(0).Columns("LOTE")} 'DEFINA CHAVE PRIMARIA
+            lblTotalSacas.Text = dsi.Tables(0).Compute("SUM(SACAS)", String.Empty).ToString
+            lblTotalPeso.Text = dsi.Tables(0).Compute("SUM(PESO)", String.Empty).ToString
+            '********* PREENCHE O DATASET SERVICO_OPERACAO *******************************************
+            If DGVServicos.Rows.Count > 0 Then ds_ser_oper.Tables(0).Clear()
+            sql(0) = "SELECT * FROM SERVICO_OPERACAO WHERE O_R = '" & mskOR.Text & "'"
+            Dim cm_op As New OleDbCommand(sql(0), cn)
+            da_ser_oper = New OleDbDataAdapter(cm_op)
+            da_ser_oper.Fill(ds_ser_oper, "SERVICO_OPERACAO")
+            For registro = 0 To DGVServicos.Rows.Count - 2
+                dr_ser_oper = ds_ser_oper.Tables(0).Select("O_R = '" & mskOR.Text & "'")
+                If dr_ser_oper.Length > 0 Then
+                    sql(0) = "SELECT * FROM qOPERACAO_COBRANCA"
+                    Dim cmop As New OleDbCommand(sql(0), cn)
+                    da_oper_cob = New OleDbDataAdapter(cmop)
+                    da_oper_cob.Fill(ds_oper_cob, "qOPERACAO_COBRANCA")
+                    dr_oper_cob = ds_oper_cob.Tables(0).Select("ID_OPER_COB = " & dr_ser_oper(registro)(2) & " ")
+                    If dr_oper_cob.Length > 0 Then
+                        'BUSCA ID OPERACAO
+                        sql(0) = "SELECT * FROM OPERACAO"
+                        Dim cmope As New OleDbCommand(sql(0), cn)
+                        da_operX = New OleDbDataAdapter(cmope)
+                        da_operX.Fill(ds_operX, "OPERACAO")
+                        dr_operX = ds_operX.Tables(0).Select("DESCRI = '" & dr_oper_cob(registro)(1) & "'")
+                        DGVServicos.Rows(registro).Cells(0).Value = dr_operX(0)("ID_OPERACAO")
+
+                        'BUSCA ID COBRANCA
+                        sql(0) = "SELECT * FROM COBRANCA"
+                        Dim cmco As New OleDbCommand(sql(0), cn)
+                        da_cobX = New OleDbDataAdapter(cmco)
+                        da_cobX.Fill(ds_cobX, "COBRANCA")
+                        dr_cobX = ds_cobX.Tables(0).Select("DESCRI = '" & dr_oper_cob(registro)(2) & "'")
+                        DGVServicos.Rows(registro).Cells(1).Value = dr_cobX(0)("ID_COBRANCA")
+                    End If
+                End If
+            Next
+            '********* PREENCHE O DATASET RETIRADA_CAMINHOES ***************************************
+            If DGVCaminhoes.Rows.Count > 0 Then ds_camin.Tables(0).Clear()
+            sql(0) = "SELECT * FROM RETIRADA_CAMINHOES WHERE ID_RETIRADA =" & CriterioBusca & ""
+            Dim cmn As New OleDbCommand(sql(0), cn)
+            da_camin = New OleDbDataAdapter(cmn)
+            da_camin.Fill(ds_camin, "RETIRADA_CAMINHOES")
+            lblTotalPesoCaminhoes.Text = ds_camin.Tables(0).Compute("SUM(PESO)", String.Empty).ToString
+            '********* PREENCHE O DATASET SACARIA_RETIRADA*******************************************
+            sql(0) = "SELECT * FROM SACARIA_RETIRADA WHERE ID_RETIRADA = " & CriterioBusca & " "
+            Dim cmsc As New OleDbCommand(sql(0), cn)
+            dasc1 = New OleDbDataAdapter(cmsc)
+            dasc1.Fill(dssc1, "SACARIA_RETIRADA")
+
+        Else
+            id_retirada = 0
+        End If
+        cadastrando = False
+        Cursor.Current = Cursors.Default
+    End Sub
+    Private Sub Visualizando()
+        id_retirada = dr("ID_RETIRADA")
+        mskOR.Text = dr("RE")
+        If Not IsDBNull(dr("DATA")) Then dtpDataEntrada.Text = dr("DATA")
+        '*****************************************************************************
+        sql(0) = "SELECT id, descri FROM DEPOSITANTE"
+        Dim cmd As New OleDbCommand(sql(0), cn)
+        dadepo = New OleDbDataAdapter(cmd)
+        dadepo.Fill(dsdepo, "DEPOSITANTE")
+        If dr("ID_DEPOSIT") > 0 Then
+            drdepo = dsdepo.Tables(0).Select("id = " & dr("ID_DEPOSIT"))(0)
+            lblDepositante.Text = drdepo("descri")
+            codigo_depositante = drdepo("id")
+            dsdepo.Dispose()
+            drdepo = Nothing
+        Else
+            lblDepositante.Text = ""
+            codigo_depositante = 0
+        End If
+        '*****************************************************************************
+        If Not IsDBNull(dr("PESO_BALANCA")) Then txtPesoBalanca.Text = dr("PESO_BALANCA")
+        If Not IsDBNull(dr("DESTINO")) Then txtDestino.Text = dr("DESTINO")
+    End Sub
+    Private Sub Alterando()
+        dr.BeginEdit()
+        If mskOR.Text <> "" Then dr("re") = mskOR.Text
+        If dtpDataEntrada.Text <> "" Then dr("DATA") = dtpDataEntrada.Text
+        dr("ID_DEPOSIT") = codigo_depositante
+        If txtPesoBalanca.Text <> "" Then dr("PESO_BALANCA") = txtPesoBalanca.Text
+        If txtDestino.Text <> "" Then dr("DESTINO") = txtDestino.Text
+        dr.EndEdit()
+    End Sub
+    Private Sub Incluindo()
+        dr = ds.Tables(tabela_db).NewRow
+        dr("RE") = mskOR.Text
+        dr("DATA") = dtpDataEntrada.Text
+        If codigo_depositante <> 0 Then
+            dr("ID_DEPOSIT") = codigo_depositante
+        Else
+            dr("ID_DEPOSIT") = DBNull.Value
+        End If
+        If txtPesoBalanca.Text <> "" Then
+            dr("PESO_BALANCA") = txtPesoBalanca.Text
+        Else
+            dr("PESO_BALANCA") = DBNull.Value
+        End If
+        If txtDestino.Text <> "" Then
+            dr("DESTINO") = txtDestino.Text
+        Else
+            dr("DESTINO") = DBNull.Value
+        End If
+        ds.Tables(tabela_db).Rows.Add(dr)
+    End Sub
+    Private Sub frmRetirada_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
+        If (e.KeyChar = ChrW(13)) Then
+            SendKeys.Send("{TAB}")
+            e.Handled = True 'Para remover aquele som...
+        End If
+    End Sub
+    Private Sub frmRetirada_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        cn = GetConnection()
+        Arquivo = tabela_db
+        Me.Text = tabela_db
+
+        '********************** POPULA DATASET ENTRADA ******************************************************************************************************
+        sql(0) = "SELECT * FROM " & tabela_db & ""
+        Dim cm As New OleDbCommand(sql(0), cn)
+        da = New OleDbDataAdapter(cm)
+        da.Fill(ds, tabela_db)
+        If ds.Tables(0).Rows.Count = 0 Then
+            MsgBox("Nao existe nenhum " & tabela_db & " cadastrada, cadastre o primeiro.", MsgBoxStyle.Information, fabricante)
+        End If
+        '********************** PREENCHE 2º DATASET RETIRADA_LOTES *******************************************************************************************
+        If DGVLotes.Rows.Count > 0 Then dsi.Tables(0).Clear()
+        sql(0) = "SELECT * FROM RETIRADA_LOTES WHERE ID_RETIRADA_LOTES = 0"
+        Dim cmi As New OleDbCommand(sql(0), cn)
+        dai = New OleDbDataAdapter(cmi)
+        dai.Fill(dsi, "RETIRADA_LOTES")
+        'MODELO DE RELACIONAMENTO ENTRE DUAS TABELAS NO MESMO DATASET INDEXANDO DOIS CAMPOS PAI E FILHO USANDO DATAGRID
+        'dshis.Relations.Add("relacionamento", dshis.Tables("ENTRADA_ITENS").Columns("ID_ENTRADA_ITENS"), dshis.Tables("HISTORICO").Columns("ID_ENTRADA"), False)
+        DGVLotes.DataSource = dsi.Tables(0)                 'POPULA GRID
+        FormataGridLotes()
+        '********************** PREENCHE 3º DATASET qLOTES_SERVICO_RETIRADA ******************************************************************************
+        sql(0) = "SELECT * FROM qLOTES_SERVICO_RETIRADA"
+        Dim cmis2 As New OleDbCommand(sql(0), cn)
+        dai2 = New OleDbDataAdapter(cmis2)
+        dai2.Fill(dsi2, "qLOTES_SERVICO_RETIRADA")
+        '********************** PREENCHE DATASET RETIRADA_CAMINHOES *****************************************************************************
+        If DGVCaminhoes.Rows.Count > 0 Then ds_camin.Tables(0).Clear()
+        sql(0) = "SELECT * FROM RETIRADA_CAMINHOES WHERE ID = 0"
+        Dim cmn As New OleDbCommand(sql(0), cn)
+        da_camin = New OleDbDataAdapter(cmn)
+        da_camin.Fill(ds_camin, "RETIRADA_CAMINHOES")
+        DGVCaminhoes.DataSource = ds_camin.Tables(0)
+        FormataGridCaminhoes()
+        '********************** PREENCHE DATASET SACARIA_SERVICO *******************************************************************************
+        If DGVSacaria.Rows.Count > 0 Then dssc1.Tables(0).Clear()
+        sql(0) = "SELECT * FROM SACARIA_RETIRADA WHERE ID_RETIRADA = 0"
+        Dim cmsc As New OleDbCommand(sql(0), cn)
+        dasc1 = New OleDbDataAdapter(cmsc)
+        dasc1.Fill(dssc1, "SACARIA_RETIRADA")
+        DGVSacaria.DataSource = dssc1.Tables(0)             'PRIMEIRO PREENCHE O DATASOURCE DO GRID
+        DGVSacaria.Columns.Remove("ID_SACARIA")             'SEGUNDO REMOVE A COLUNA ID_SACARIA Q FAZ O LINK
+        Dim colsacaria As New DataGridViewComboBoxColumn    'TERCEIRO ADCIONE A COLUNA COMBOBOX DA TABELA EXTERNA
+        colsacaria.DataPropertyName = "ID_SACARIA"          'COLUNA Q FAZ O LINK COM A COLUNA DA TB DO GRID
+        colsacaria.HeaderText = "SACARIA"
+        colsacaria.Width = 115
+        DGVSacaria.Columns.Add(colsacaria)
+        sql(0) = "SELECT * FROM SACARIA"                    'QUARTO PREENCHE A COMBOBOX COM OS DADOS DA TABELA EXTERNA
+        Dim cmscent As New OleDbCommand(sql(0), cn)
+        dasc2 = New OleDbDataAdapter(cmscent)
+        dasc2.Fill(dssc2, "SACARIA")
+        colsacaria.DataSource = dssc2.Tables(0)
+        colsacaria.ValueMember = "ID_SACARIA"               'COMPO LINK COM O CAMPO DO GRID
+        colsacaria.DisplayMember = "DESCRI"
+        DGVSacaria.RowHeadersWidth = 24
+        DGVSacaria.Columns(3).DisplayIndex = 0              'MOVE A COLUNA SACARIA PARA A PRIMEIRO POSIÇÃO DAS COLUNAS
+        DGVSacaria.Columns(2).DisplayIndex = 1              'MOVE A COLUNA QTDE PARA A SEGUNDA POSIÇÃO DAS COLUNAS
+        DGVSacaria.Columns(2).HeaderText = "QTDE"
+        DGVSacaria.Columns(2).Width = 50
+        DGVSacaria.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        DGVSacaria.Columns(2).DefaultCellStyle.Format = "###,###0.0"
+        DGVSacaria.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        DGVSacaria.Columns(0).Visible = False
+        DGVSacaria.Columns(1).Visible = False
+        '********************** PREENCHE DATASET SERVICO_OPERACAO *******************************************************************************
+        If DGVServicos.Rows.Count > 0 Then ds_ser_oper.Tables(0).Clear()
+        sql(0) = "SELECT * FROM SERVICO_OPERACAO WHERE ID_SERVICO_OPERACAO = 0"
+        Dim cm_op As New OleDbCommand(sql(0), cn)
+        da_ser_oper = New OleDbDataAdapter(cm_op)
+        da_ser_oper.Fill(ds_ser_oper, "SERVICO_OPERACAO")
+        DGVServicos.DataSource = ds_ser_oper.Tables(0)       'PREENCHE O DATASOURCE DO GRID
+
+        'PREENCHE COMBO OPERAÇÃO
+
+        Dim coloperacao As New DataGridViewComboBoxColumn    'ADCIONE A COLUNA COMBOBOX DA TABELA EXTERNA
+        coloperacao.DataPropertyName = "ID_OPERACAO"         'COLUNA Q FAZ O LINK COM A COLUNA DA TB DO GRID
+        coloperacao.HeaderText = "OPERACAO"                  'NOME DA COLUNA(ROTULO) COMBO 
+        coloperacao.Width = 150
+        coloperacao.Name = "ID_OPERACAO"
+        DGVServicos.Columns.Add(coloperacao)                 'ADCIONA O COMBO NO GRID
+        sql(0) = "SELECT * FROM OPERACAO"                    'PREENCHE A COMBOBOX COM OS DADOS DA TABELA EXTERNA
+        Dim cmop As New OleDbCommand(sql(0), cn)
+        da_oper = New OleDbDataAdapter(cmop)
+        da_oper.Fill(ds_oper, "OPERACAO")
+        coloperacao.DataSource = ds_oper.Tables(0)
+        coloperacao.ValueMember = "ID_OPERACAO"             'CAMPO INDICE DO CAMPO
+        coloperacao.DisplayMember = "DESCRI"                'CAMPO DADO A SER EXIBIDO NO COMBO
+
+        'PREENCHE COMBO COBRANÇA
+
+        Dim col_cob As New DataGridViewComboBoxColumn       'ADCIONE A COLUNA COMBOBOX DA TABELA EXTERNA
+        col_cob.DataPropertyName = "ID_COBRANCA"            'COLUNA Q FAZ O LINK COM A COLUNA DA TB DO GRID
+        col_cob.HeaderText = "NOME"                         'NOME DA COLUNA(ROTULO) COMBO 
+        col_cob.Width = 100
+        col_cob.Name = "ID_COBRANCA"
+        DGVServicos.Columns.Add(col_cob)                    'ADCIONA O COMBO NO GRID
+        sql(0) = "SELECT * FROM COBRANCA"                   'PREENCHE A COMBOBOX COM OS DADOS DA TABELA EXTERNA
+        Dim cm_cob As New OleDbCommand(sql(0), cn)
+        da_cob = New OleDbDataAdapter(cm_cob)
+        da_cob.Fill(ds_cob, "COBRANCA")
+        col_cob.DataSource = ds_cob.Tables(0)
+        col_cob.ValueMember = "ID_COBRANCA"                 'CAMPO INDICE DO CAMPO
+        col_cob.DisplayMember = "DESCRI"                    'CAMPO DADO A SER EXIBIDO NO COMBO
+
+        DGVServicos.RowHeadersWidth = 24
+        DGVServicos.Columns(0).Visible = False              'ID_SERVICO_OPER
+        DGVServicos.Columns(1).Visible = False              'ID_SERVICO
+        DGVServicos.Columns(2).Visible = False              'ID_OPER_COB
+        DGVServicos.Columns(3).Visible = False              'DATA_SERVICO
+        DGVServicos.Columns(4).Visible = False              'HORA_SERVICO
+        DGVServicos.Columns(5).Visible = False              'DATA_SAIDA
+        DGVServicos.Columns(6).Visible = False              'HORA_SAIDA
+        DGVServicos.Columns(7).Width = 50                   'SACAS
+        DGVServicos.Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        DGVServicos.Columns(8).HeaderText = "VALOR"         'VALOR_OP_SACA
+        DGVServicos.Columns(8).DefaultCellStyle.Format = "c"
+        DGVServicos.Columns(8).Width = 50
+        DGVServicos.Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        DGVServicos.Columns(8).ReadOnly = True
+        DGVServicos.Columns(9).DefaultCellStyle.Format = "c" 'TOTAL
+        DGVServicos.Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        DGVServicos.Columns(9).Width = 70
+        DGVServicos.Columns(9).ReadOnly = True
+        DGVServicos.Columns(10).Visible = False             'DIAS
+        DGVServicos.Columns(11).Visible = False             'PAGO
+        DGVServicos.Columns(12).Visible = False             'ID_DEPOSITANTE
+        DGVServicos.Columns(13).Visible = False             'FE
+        DGVServicos.Columns(14).Visible = False             'SE
+        DGVServicos.Columns(15).Visible = False             'OR
+
+        DGVServicos.Columns(16).Visible = False             'OUTRAS COBRANÇAS
+
+        DGVServicos.Columns(17).DisplayIndex = 0            'OPERACAO  'MOVE A COLUNA COMBO OPERACAO PARA A PRIMEIRA POSIÇÃO DAS COLUNAS
+        DGVServicos.Columns(17).Width = 220
+
+        DGVServicos.Columns(18).DisplayIndex = 1            'COBRANCA  'MOVE A COLUNA COMBO COBRANCA PARA A SEGUNDA POSIÇÃO DAS COLUNAS
+        DGVServicos.Columns(18).Width = 90
+
+        '********************** PREENCHE O DATASET ENTRADA_ITENS PARA CONSULTA SE EXISTE O LOTE IGUAL O RESULTADO *******************************
+
+        'sql(0) = "SELECT * FROM RETIRADA_LOTES"
+        'Dim cmle As New OleDbCommand(sql(0), cn)
+        'da_le = New OleDbDataAdapter(cmle)
+        'da_le.Fill(ds_le, "RETIRADA_LOTES")
+
+        estadobotao("inicio")
+        habilita(Me, False)
+        mskOR.Mask = "####/##"
+    End Sub
+    Private Sub cmdAlterar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdAlterar.Click
+        habilita(Me, True)
+        estadobotao("incluir/Salvar")
+        altera = True
+        cadastrando = False
+    End Sub
+    Private Sub cmdExcluir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdExcluir.Click
+        Dim resp As String
+        resp = MsgBox("Deseja realmente excluir esse registro?", MsgBoxStyle.YesNo)
+        If resp = vbYes Then
+            'EXCLUI DA TAB RETIRADA
+            dr = ds.Tables(tabela_db).Select("ID_RETIRADA = " & CriterioBusca)(0)
+            dr.Delete()
+            Dim cmb As New OleDbCommandBuilder(da)
+            da.Update(ds, tabela_db)
+            'EXCLUI DA TAB RETIRADA_LOTES
+            If DGVLotes.RowCount > 1 Then
+                dr = dsi.Tables("RETIRADA_LOTES").Select("ID_RETIRADA = " & CriterioBusca)(0)
+                dr.Delete()
+                cmb = New OleDbCommandBuilder(dai)
+                dai.Update(dsi, "RETIRADA_LOTES")
+            End If
+            'EXCLUI DA TAB RETIRADA_CAMINHOES
+            If DGVCaminhoes.RowCount > 1 Then
+                dr = dsi.Tables("RETIRADA_CAMINHOES").Select("ID_RETIRADA = " & CriterioBusca)(0)
+                dr.Delete()
+                cmb = New OleDbCommandBuilder(da_camin)
+                da_camin.Update(ds_camin, "RETIRADA_CAMINHOES")
+            End If
+            'EXCLUI DA TAB SACARIA_ENTRADA
+            If DGVSacaria.RowCount > 1 Then
+                dr = dssc1.Tables("SACARIA_RETIRADA").Select("ID_RETIRADA = " & CriterioBusca)(0)
+                dr.Delete()
+                cmb = New OleDbCommandBuilder(dasc1)
+                dasc1.Update(dssc1, "SACARIA_RETIRADA")
+            End If
+            'EXCLUI DA TAB SERVICO_OPERACAO
+            resp = MsgBox("Deseja excluir as cobranças?", MsgBoxStyle.YesNo)
+            If resp = vbYes Then
+                If DGVServicos.RowCount > 1 Then
+                    dr = dssc1.Tables("SERVICO_OPERACAO").Select("O_R = '" & CriterioBusca & "'")(0)
+                    dr.Delete()
+                    cmb = New OleDbCommandBuilder(da_ser_oper)
+                    da_ser_oper.Update(ds_ser_oper, "SERVICO_OPERACAO")
+                End If
+            End If
+            limpa(Me)
+            estadobotao("inicio")
+            MsgBox(tabela_db & " Excluído com sucesso!", MsgBoxStyle.Information, fabricante)
+        End If
+    End Sub
+    Private Sub cmdSair_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSair.Click
+        Me.Close()
+    End Sub
+    Private Sub limpa(ByVal form As Form)
+        Dim i As Integer
+        For i = 0 To (form.Controls.Count - 1)
+            If TypeOf form.Controls(i) Is System.Windows.Forms.TextBox Or TypeOf form.Controls(i) Is System.Windows.Forms.MaskedTextBox Or TypeOf form.Controls(i) Is System.Windows.Forms.DateTimePicker Or form.Controls(i).Name = "lblDepositante" Or form.Controls(i).Name = "lblOrigem" Or form.Controls(i).Name = "lblTotalSacas" Or form.Controls(i).Name = "lblTotalPeso" Or form.Controls(i).Name = "lblTotalPeso2" Or form.Controls(i).Name = "lblTotalPesoResultado" Then
+                form.Controls(i).Text = ""
+            End If
+        Next i
+        If DGVLotes.Rows.Count > 0 Then dsi.Tables(0).Clear()
+        If DGVCaminhoes.Rows.Count > 0 Then ds_camin.Tables(0).Clear()
+        If DGVSacaria.Rows.Count > 0 Then dssc1.Tables(0).Clear()
+    End Sub
+    Private Sub cmdCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCancelar.Click
+        estadobotao("inicio")
+        limpa(Me)
+        habilita(Me, False)
+        altera = False
+        cadastrando = False
+    End Sub
+    Private Sub cmdSalvar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSalvar.Click
+        Cursor.Current = Cursors.WaitCursor
+        Dim registro As Integer = 0
+        If lblDepositante.Text = "" Then
+            MsgBox("Informe o depositante", MsgBoxStyle.Information)
+            cmdBuscaDepositante.Focus()
+        ElseIf DGVLotes.RowCount = 1 Then
+            MsgBox("Informe os lotes", MsgBoxStyle.Information)
+            DGVLotes.Focus()
+        Else
+            If altera = True Then
+                Alterando()
+            Else
+                Incluindo()
+            End If
+            '******************* ATUALIZA DATASET RETIRADA ****************************************
+            Dim cmb As New OleDbCommandBuilder(da)
+            da.Update(ds, tabela_db)
+            ds.AcceptChanges()
+            da.Dispose()
+            ds.Dispose()
+            ds.Clear()
+            '******************* BUSCA O ID DA NOVA SE *******************************************
+            sql(0) = "SELECT * FROM " & tabela_db & ""
+            Dim cm As New OleDbCommand(sql(0), cn)
+            da = New OleDbDataAdapter(cm)
+            da.Fill(ds, tabela_db)
+            Dim linhaentrada As DataRow
+            linhaentrada = ds.Tables(tabela_db).Select("RE='" & mskOR.Text & "'")(0)
+            id_retirada = linhaentrada("ID_RETIRADA")
+            '*************ATUALIZA A COLUNA id_retirada DO GRID RETIRADA_LOTES COM O NOVO ID**********
+            registro = 0
+            For registro = 0 To DGVLotes.Rows.Count - 2
+                dr_lotes = dsi.Tables(0).Select("ID_RETIRADA = 9999999")
+                If dr_lotes.Length > 0 Then
+                    dr_lotes(0).BeginEdit()
+                    dr_lotes(0)(3) = id_retirada ' indice da coluna id_retirada
+                    dr_lotes(0).EndEdit()
+                End If
+            Next
+            'ATUALIZA DATASET RETIRADA_LOTES
+            Dim cb As New OleDbCommandBuilder(dai)
+            dai.Update(dsi, "RETIRADA_LOTES")
+            dsi.AcceptChanges()
+            '*************ATUALIZA A COLUNA id_retirada DO GRID CAMINHOES COM O NOVO ID**************
+            registro = 0
+            For registro = 0 To DGVCaminhoes.Rows.Count - 2
+                dr_camin = ds_camin.Tables(0).Select("ID_RETIRADA = 9999999")
+                If dr_camin.Length > 0 Then
+                    dr_camin(0).BeginEdit()
+                    dr_camin(0)(2) = id_retirada
+                    dr_camin(0).EndEdit()
+                End If
+            Next
+            'ATUALIZA DATASET RETIRADA_CAMINHOES
+            Dim cbn As New OleDbCommandBuilder(da_camin)
+            da_camin.Update(ds_camin, "RETIRADA_CAMINHOES")
+            ds_camin.AcceptChanges()
+            '******************* ATUALIZA A COLUNA ID_ENTRADA DO GRID SACARIA COM O NOVO ID*******************
+            registro = 0
+            For registro = 0 To DGVSacaria.Rows.Count - 2
+                dri = dssc1.Tables(0).Select("ID_RETIRADA = 9999999")
+                If dri.Length > 0 Then
+                    dri(0).BeginEdit()
+                    dri(0)(2) = id_retirada
+                    dri(0).EndEdit()
+                End If
+            Next
+            'ATUALIZA DATASET SACARIA_RETIRADA
+            Dim cbsc As New OleDbCommandBuilder(dasc1)
+            dasc1.Update(dssc1, "SACARIA_RETIRADA")
+            dssc1.AcceptChanges()
+            '******************* ATUALIZA A COLUNA ID_ENTRADA DO GRID SERVICO_OPERACAO COM O NOVO ID*********
+            If cadastrando = True Then
+                registro = 0
+                For registro = 0 To DGVServicos.Rows.Count - 2
+                    dr_ser_oper = ds_ser_oper.Tables(0).Select("O_R = '9999999'")
+                    If dr_ser_oper.Length > 0 Then
+                        dr_ser_oper(0).BeginEdit()
+                        dr_ser_oper(0)(15) = mskOR.Text
+                        dr_ser_oper(0).EndEdit()
+                    End If
+                Next
+            End If
+            'ATUALIZA DATASET SERVICO_OPERACAO
+            Dim cbop As New OleDbCommandBuilder(da_ser_oper)
+            da_ser_oper.Update(ds_ser_oper, "SERVICO_OPERACAO")
+            ds_ser_oper.AcceptChanges()
+            '********* PREENCHE O DATASET DO GRID SERVICO_OPERACAO *******************************************
+            If DGVServicos.Rows.Count > 0 Then ds_ser_oper.Tables(0).Clear()
+            sql(0) = "SELECT * FROM SERVICO_OPERACAO WHERE O_R = '" & mskOR.Text & "'"
+            Dim cm_op As New OleDbCommand(sql(0), cn)
+            da_ser_oper = New OleDbDataAdapter(cm_op)
+            da_ser_oper.Fill(ds_ser_oper, "SERVICO_OPERACAO")
+            For registro = 0 To DGVServicos.Rows.Count - 2
+                dr_ser_oper = ds_ser_oper.Tables(0).Select("O_R = '" & mskOR.Text & "'")
+                If dr_ser_oper.Length > 0 Then
+                    sql(0) = "SELECT * FROM qOPERACAO_COBRANCA"
+                    Dim cmop As New OleDbCommand(sql(0), cn)
+                    da_oper_cob = New OleDbDataAdapter(cmop)
+                    da_oper_cob.Fill(ds_oper_cob, "qOPERACAO_COBRANCA")
+                    dr_oper_cob = ds_oper_cob.Tables(0).Select("ID_OPER_COB = " & dr_ser_oper(registro)(2) & " ")
+                    If dr_oper_cob.Length > 0 Then
+                        'BUSCA ID OPERACAO
+                        sql(0) = "SELECT * FROM OPERACAO"
+                        Dim cmope As New OleDbCommand(sql(0), cn)
+                        da_operX = New OleDbDataAdapter(cmope)
+                        da_operX.Fill(ds_operX, "OPERACAO")
+                        dr_operX = ds_operX.Tables(0).Select("DESCRI = '" & dr_oper_cob(registro)(1) & "'")
+                        DGVServicos.Rows(registro).Cells(0).Value = dr_operX(0)("ID_OPERACAO")
+
+                        'BUSCA ID COBRANCA
+                        sql(0) = "SELECT * FROM COBRANCA"
+                        Dim cmco As New OleDbCommand(sql(0), cn)
+                        da_cobX = New OleDbDataAdapter(cmco)
+                        da_cobX.Fill(ds_cobX, "COBRANCA")
+                        dr_cobX = ds_cobX.Tables(0).Select("DESCRI = '" & dr_oper_cob(registro)(2) & "'")
+                        DGVServicos.Rows(registro).Cells(1).Value = dr_cobX(0)("ID_COBRANCA")
+                    End If
+                End If
+            Next
+            '******************* RECALCULA TOTAIS ***************************************************
+            lblTotalSacas.Text = dsi.Tables(0).Compute("SUM(SACAS)", String.Empty).ToString
+            lblTotalPeso.Text = dsi.Tables(0).Compute("SUM(PESO)", String.Empty).ToString
+            lblTotalPesoCaminhoes.Text = ds_camin.Tables(0).Compute("SUM(PESO)", String.Empty).ToString
+            If altera = True Then
+                MsgBox(tabela_db & " alterado com sucesso!", MsgBoxStyle.Information, fabricante)
+            Else
+                MsgBox(tabela_db & " cadastrado com sucesso!", MsgBoxStyle.Information, fabricante)
+            End If
+        End If
+        altera = True
+        habilita(Me, False)
+        estadobotao("exibido")
+        cadastrando = False
+        Cursor.Current = Cursors.Default
+    End Sub
+    Private Sub cmdBuscaDepositante_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdBuscaDepositante.Click
+        '*******************************PARAMETROS DA BUSCA****************************
+        Busca.Criterio = New TCriterio(1) {}
+        Busca.Ncolunas = 1
+        Busca.NumCrite = 0
+        Busca.Numcampoinicial = 1
+        Busca.Ordem = "descri"
+        Busca.OrdemAD = "ASC"
+
+        Busca.Criterio(0).Nome = "ID"
+        Busca.Criterio(0).Campo = "id"
+        Busca.Criterio(0).Alinha = DataGridViewContentAlignment.MiddleRight
+        Busca.Criterio(0).Numerico = True
+        Busca.Criterio(0).LargCol = 40
+        Busca.Criterio(0).Data = False
+        Busca.Criterio(0).Formato = ""
+
+        Busca.Criterio(1).Nome = "NOME"
+        Busca.Criterio(1).Campo = "descri"
+        Busca.Criterio(1).Alinha = DataGridViewContentAlignment.MiddleLeft
+        Busca.Criterio(1).Numerico = False
+        Busca.Criterio(1).LargCol = 450
+        Busca.Criterio(1).Data = True
+        Busca.Criterio(1).Formato = ""
+        '*****************************************************************************
+        cn = GetConnection()
+        CriterioBusca = "XXX"
+        Arquivo = "DEPOSITANTE"
+        col_ini_busca = 1
+        frmbusca.ShowDialog()
+        If CriterioBusca <> "XXX" Then
+            sql(0) = "SELECT * FROM DEPOSITANTE"
+            Dim cm As New OleDbCommand(sql(0), cn)
+            dadepo = New OleDbDataAdapter(cm)
+            dadepo.Fill(dsdepo, "DEPOSITANTE")
+            drdepo = dsdepo.Tables("DEPOSITANTE").Select("id = " & CriterioBusca)(0)
+            lblDepositante.Text = drdepo("descri")
+            codigo_depositante = drdepo("id")
+            dsdepo.Dispose()
+            DGVLotes.Focus()
+        End If
+    End Sub
+    Private Sub habilita(ByVal form As Form, ByVal habil As Boolean)
+        Dim i As Integer
+        For i = 0 To (form.Controls.Count - 1)
+            If TypeOf form.Controls(i) Is System.Windows.Forms.TextBox Or TypeOf form.Controls(i) Is System.Windows.Forms.MaskedTextBox Or TypeOf form.Controls(i) Is System.Windows.Forms.DataGridView Or TypeOf form.Controls(i) Is System.Windows.Forms.DateTimePicker Or form.Controls(i).Name = "cmdBuscaDepositante" Or form.Controls(i).Name = "cmdLimpaDepositante" Or form.Controls(i).Name = "cmdDepositante" Or form.Controls(i).Name = "cmdBuscaOrigem" Or form.Controls(i).Name = "cmdLimpaOrigem" Or form.Controls(i).Name = "cmdOrigem" Then
+                form.Controls(i).Enabled = habil
+            End If
+        Next i
+    End Sub
+    Private Sub cmdLimpaDepositante_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdLimpaDepositante.Click
+        lblDepositante.Text = ""
+        codigo_depositante = 0
+    End Sub
+    Private Sub DGVLotes_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGVLotes.CellEndEdit
+        Dim drfe() As DataRow
+        Dim totsacas As Decimal
+        Dim totpeso As Decimal
+
+        If e.ColumnIndex = 0 Then 'LOTE
+            If Not DGVLotes.Item(0, e.RowIndex).Value Is Nothing Then
+                drfe = dsi2.Tables("qLOTES_SERVICO_RETIRADA").Select("LOTE='" & DGVLotes.Item(0, e.RowIndex).Value.ToString & "'")
+                If drfe.Length > 0 Then
+                    If drfe(0)("SALDO_SACAS") > 0 Then
+                        DGVLotes.Item(1, e.RowIndex).Value = drfe(0)("SALDO_SACAS")
+                        DGVLotes.Item(2, e.RowIndex).Value = drfe(0)("SALDO_PESO")
+                    Else
+                        MsgBox("Lote não possui saldo")
+                        DGVLotes.Item(1, e.RowIndex).Value = ""
+                        'DGVLotes.CurrentCell = DGVLotes.Rows(e.RowIndex).Cells(0)
+                    End If
+                Else
+                    MsgBox("Lote não encontrado")
+                    DGVLotes.Item(0, e.RowIndex).Value = DBNull.Value
+                    'DGVLotes.CurrentCell = DGVLotes.Rows(e.RowIndex).Cells(0)
+                End If
+                lblTotalSacas.Text = dsi.Tables(0).Compute("SUM(SACAS)", String.Empty).ToString
+                lblTotalPeso.Text = dsi.Tables(0).Compute("SUM(PESO)", String.Empty).ToString
+            End If
+        ElseIf e.ColumnIndex = 1 Then 'SACAS
+            If dsi2.Tables(0).Rows.Count > 0 And DGVLotes.Item(1, e.RowIndex).Value.ToString <> "" Then
+                If controle_soma = True Then
+                    totsacas = totsacas + DGVLotes.Rows(e.RowIndex).Cells(1).Value
+                    DGVLotes.Rows(e.RowIndex).Cells(2).Value = DGVLotes.Rows(e.RowIndex).Cells(1).Value * 60.5
+                    totpeso = totpeso + DGVLotes.Rows(e.RowIndex).Cells(2).Value
+                    'lblTotalSacas.Text = totsacas
+                    'lblTotalPeso.Text = totpeso
+                    controle_soma = False
+                Else
+                    If lblTotalSacas.Text <> "" Then
+                        'totsacas = lblTotalSacas.Text + DGVLotes.Rows(e.RowIndex).Cells(1).Value
+
+                        DGVLotes.Rows(e.RowIndex).Cells(2).Value = DGVLotes.Rows(e.RowIndex).Cells(1).Value * 60.5
+                        'totpeso = lblTotalPeso.Text + DGVLotes.Rows(e.RowIndex).Cells(2).Value
+
+                        'lblTotalSacas.Text = totsacas
+                        'lblTotalPeso.Text = totpeso
+                    End If
+                End If
+                lblTotalSacas.Text = dsi.Tables(0).Compute("SUM(SACAS)", String.Empty).ToString
+                lblTotalPeso.Text = dsi.Tables(0).Compute("SUM(PESO)", String.Empty).ToString
+            End If
+        ElseIf e.ColumnIndex = 4 Then
+            DGVLotes.CurrentCell = DGVLotes.Rows(e.RowIndex + 1).Cells(0)
+            DGVLotes.BeginEdit(True)
+        End If
+    End Sub
+    Private Sub DGVLotes_EditingControlShowing(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs) Handles DGVLotes.EditingControlShowing
+        'If DGVLotes.CurrentCell.ColumnIndex = 0 And Not e.Control Is Nothing Then
+        ' Dim tb As TextBox = CType(e.Control, TextBox)
+        ' AddHandler tb.KeyPress, AddressOf TextBox_KeyPress
+        If DGVLotes.CurrentCell.ColumnIndex = 1 And Not e.Control Is Nothing Then
+            Dim tb As TextBox = CType(e.Control, TextBox)
+            AddHandler tb.KeyPress, AddressOf TextBox_KeyPress
+        End If
+    End Sub
+    Private Sub DGVLotes_UserAddedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles DGVLotes.UserAddedRow
+        If id_retirada = 0 Then
+            DGVLotes.Rows(e.Row.Index - 1).Cells(3).Value = 9999999
+        Else
+            DGVLotes.Rows(e.Row.Index - 1).Cells(3).Value = id_retirada
+        End If
+    End Sub
+    Private Sub TextBox_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+        '---Se o textbox esta vazio e o usuario pressionou um caractere decimal ---
+        If CType(sender, TextBox).Text = String.Empty And e.KeyChar = Chr(44) Then
+            e.Handled = True
+            Return
+        End If
+        '---Se o textbox já possui um ponto decimal---
+        If CType(sender, TextBox).Text.Contains(Chr(44)) And e.KeyChar = Chr(44) Then
+            e.Handled = True
+            Return
+        End If
+        If (Not (Char.IsDigit(e.KeyChar) Or Char.IsControl(e.KeyChar) Or e.KeyChar = Chr(47) Or e.KeyChar = Chr(44))) Then
+            e.Handled = True
+        End If
+    End Sub
+    Private Sub txtPesoBalanca_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+        If Not Char.IsNumber(e.KeyChar) And Not e.KeyChar = vbBack And Not e.KeyChar = "," Then e.Handled = True
+    End Sub
+    Private Sub DGVLotes_UserDeletingRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles DGVLotes.UserDeletingRow
+        'Verifica se a linha é uma nova linha
+        If Not e.Row.IsNewRow Then
+            Dim resposta As DialogResult
+            'Exibe caixa de diálogo solicitando confirmação ao usuário
+            resposta = MessageBox.Show("Confirma exclusão deste registro?", "Excluir linha?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+            'Se o usuário não confirmar cancela o processo
+            If resposta = Windows.Forms.DialogResult.No Then
+                e.Cancel = True
+            End If
+        End If
+    End Sub
+    Private Sub FormataGridLotes()
+        DGVLotes.RowHeadersWidth = 24
+        DGVLotes.Columns(0).Width = 60
+        DGVLotes.Columns(1).Width = 67
+        DGVLotes.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        DGVLotes.Columns(1).DefaultCellStyle.Format = "###,###0.0"
+        DGVLotes.Columns(2).Width = 61
+        DGVLotes.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        DGVLotes.Columns(2).DefaultCellStyle.Format = "###,###0.0"
+        DGVLotes.Columns(3).Visible = False
+        DGVLotes.Columns(4).Visible = False
+        DGVLotes.Columns(5).Visible = False
+    End Sub
+    Private Sub FormataGridCaminhoes()
+        DGVCaminhoes.RowHeadersWidth = 24
+        DGVCaminhoes.Columns(0).Width = 60
+        DGVCaminhoes.Columns(1).Width = 67
+        DGVCaminhoes.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        DGVCaminhoes.Columns(1).DefaultCellStyle.Format = "###,###0.0"
+        'DGVCaminhoes.Columns(2).Width = 61
+        'DGVCaminhoes.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        'DGVCaminhoes.Columns(2).DefaultCellStyle.Format = "###,###0.0"
+        DGVCaminhoes.Columns(2).Visible = False
+        DGVCaminhoes.Columns(3).Visible = False
+    End Sub
+
+    Private Sub DGVCaminhoes_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGVCaminhoes.CellEndEdit
+        If e.ColumnIndex = 0 Then 'PESO
+            lblTotalPesoCaminhoes.Text = ds_camin.Tables(0).Compute("SUM(PESO)", String.Empty).ToString
+        End If
+    End Sub
+    Private Sub DGVCaminhoes_DataError(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewDataErrorEventArgs) Handles DGVCaminhoes.DataError, DGVCaminhoes.DataError
+        If e.Context = DataGridViewDataErrorContexts.Parsing Then
+            MsgBox("Dado errado")
+        End If
+    End Sub
+    Private Sub DGVCaminhoes_EditingControlShowing(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs) Handles DGVCaminhoes.EditingControlShowing, DGVCaminhoes.EditingControlShowing
+        If DGVCaminhoes.CurrentCell.ColumnIndex = 1 Or DGVCaminhoes.CurrentCell.ColumnIndex = 3 Or DGVCaminhoes.CurrentCell.ColumnIndex = 4 And Not e.Control Is Nothing Then
+            Dim tb As TextBox = CType(e.Control, TextBox)
+            AddHandler tb.KeyPress, AddressOf TextBox_KeyPress
+        End If
+    End Sub
+    Private Sub DGVCaminhoes_UserAddedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles DGVCaminhoes.UserAddedRow, DGVCaminhoes.UserAddedRow
+        If id_retirada = 0 Then
+            DGVCaminhoes.Rows(e.Row.Index - 1).Cells(2).Value = 9999999
+        Else
+            DGVCaminhoes.Rows(e.Row.Index - 1).Cells(2).Value = id_retirada
+        End If
+    End Sub
+    Private Sub DDGVCaminhoes_UserDeletingRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles DGVCaminhoes.UserDeletingRow, DGVCaminhoes.UserDeletingRow
+        'Verifica se a linha é uma nova linha
+        If Not e.Row.IsNewRow Then
+            Dim resposta As DialogResult
+            'Exibe caixa de diálogo solicitando confirmação ao usuário
+            resposta = MessageBox.Show("Confirma exclusão deste registro?", "Excluir linha?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+            'Se o usuário não confirmar cancela o processo
+            If resposta = Windows.Forms.DialogResult.No Then
+                e.Cancel = True
+            End If
+        End If
+    End Sub
+    Private Sub btnImprime_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprime.Click
+        Cursor.Current = Cursors.WaitCursor
+        frmReportRetirada.Show()
+    End Sub
+    Private Sub cmdDepositante_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdDepositante.Click
+        frmDepositante.Show()
+    End Sub
+    Private Sub estadobotao(ByRef valor As String)
+        If valor = "inicio" Then
+            cmdCadastrar.Enabled = True
+            cmdAlterar.Enabled = False
+            cmdSalvar.Enabled = False
+            cmdConsultar.Enabled = True
+            CmdExcluir.Enabled = False
+            cmdCancelar.Enabled = False
+            btnImprime.Enabled = False
+            cmdSair.Enabled = True
+        ElseIf valor = "incluir/Salvar" Then
+            cmdCadastrar.Enabled = False
+            cmdAlterar.Enabled = False
+            cmdSalvar.Enabled = True
+            cmdConsultar.Enabled = False
+            CmdExcluir.Enabled = False
+            cmdCancelar.Enabled = True
+            btnImprime.Enabled = False
+            cmdSair.Enabled = False
+        Else
+            cmdCadastrar.Enabled = True
+            cmdAlterar.Enabled = True
+            cmdSalvar.Enabled = False
+            cmdConsultar.Enabled = True
+            CmdExcluir.Enabled = True
+            cmdCancelar.Enabled = False
+            btnImprime.Enabled = True
+            cmdSair.Enabled = True
+        End If
+    End Sub
+    Private Sub DGVSacaria_UserAddedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles DGVSacaria.UserAddedRow
+        If id_retirada = 0 Then
+            DGVSacaria.Rows(e.Row.Index - 1).Cells(2).Value = 9999999
+        Else
+            DGVSacaria.Rows(e.Row.Index - 1).Cells(2).Value = id_retirada
+        End If
+    End Sub
+    Private Sub mskOR_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles mskOR.LostFocus
+        Dim dview As DataView = ds.Tables(0).DefaultView
+        If altera = False Then
+            If mskOR.Text <> "____/__" Then
+                dview.RowFilter = "RE ='" & mskOR.Text & "'"
+                If dview.Count > 0 Then
+                    MsgBox("JÁ EXISTE ESSA OR")
+                    mskOR.Focus()
+                End If
+            End If
+        End If
+    End Sub
+    Private Sub cmdCadastrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCadastrar.Click
+        Dim datas As DateTime = DateTime.Now
+        limpa(Me)
+        habilita(Me, True)
+        estadobotao("incluir/Salvar")
+        cmdBuscaDepositante.Focus()
+        altera = False
+        Dim bm As BindingManagerBase
+
+        bm = BindingContext(ds, tabela_db)
+        If bm.Count = 0 Then
+            mskOR.Text = "0001" & "/" & Mid(Year(Today), 3, 2)
+        Else
+            bm.Position = bm.Count - 1
+            Dim x1 As Int32 = Mid(ds.Tables(0).Rows(bm.Position).Item("RE").ToString(), 1, 4)
+            Dim x2 As String = x1 + 1
+            If x2.Length = 1 Then
+                mskOR.Text = "000" & x2 & "/" & Mid(Year(Today), 3, 2)
+            ElseIf x2.Length = 2 Then
+                mskOR.Text = "00" & x2 & "/" & Mid(Year(Today), 3, 2)
+            ElseIf x2.Length = 3 Then
+                mskOR.Text = "0" & x2 & "/" & Mid(Year(Today), 3, 2)
+            End If
+        End If
+        controle_soma = True
+        cadastrando = True
+    End Sub
+    Private Sub DGVServicos_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGVServicos.CellEndEdit
+        If Not DGVServicos.Rows(e.RowIndex).Cells(0).Value Is Nothing And Not DGVServicos.Rows(e.RowIndex).Cells(1).Value Is Nothing Then
+            sql(0) = "SELECT * FROM OPERACAO_COBRANCA WHERE ID_OPERACAO =" & DGVServicos.Rows(e.RowIndex).Cells(0).Value & " AND ID_COBRANCA = " & DGVServicos.Rows(e.RowIndex).Cells(1).Value & ""
+            Dim cmi As New OleDbCommand(sql(0), cn)
+            Dim StrHora As DateTime = DateTime.Now.ToShortTimeString
+            da_bso = New OleDbDataAdapter(cmi)
+            da_bso.Fill(ds_bso, "OPERACAO_COBRANCA")
+            dr_bso = ds_bso.Tables("OPERACAO_COBRANCA").Select("ID_OPERACAO = " & DGVServicos.Rows(e.RowIndex).Cells(0).Value & " AND ID_COBRANCA = " & DGVServicos.Rows(e.RowIndex).Cells(1).Value & "") 'BUSCA A ENTRADA
+            If dr_bso.Length > 0 Then
+                DGVServicos.Rows(e.RowIndex).Cells(4).Value = dr_bso(0)("ID_OPER_COB")
+                DGVServicos.Rows(e.RowIndex).Cells(5).Value = Now.Date 'DATA RETIRADA
+                DGVServicos.Rows(e.RowIndex).Cells(6).Value = StrHora 'HORA RETIRADA
+                DGVServicos.Rows(e.RowIndex).Cells(7).Value = DBNull.Value 'DATA RETIRADA
+                DGVServicos.Rows(e.RowIndex).Cells(8).Value = StrHora 'HORA RETIRADA
+                DGVServicos.Rows(e.RowIndex).Cells(10).Value = dr_bso(0)("VALOR")
+                If Not DGVServicos.Rows(e.RowIndex).Cells(9).Value Is DBNull.Value And Not DGVServicos.Rows(e.RowIndex).Cells(10).Value Is DBNull.Value Then
+                    DGVServicos.Rows(e.RowIndex).Cells(11).Value = DGVServicos.Rows(e.RowIndex).Cells(9).Value * DGVServicos.Rows(e.RowIndex).Cells(10).Value 'HORA RETIRADA
+                End If
+                DGVServicos.Rows(e.RowIndex).Cells(14).Value = codigo_depositante
+                DGVServicos.Rows(e.RowIndex).Cells(15).Value = ""
+                DGVServicos.Rows(e.RowIndex).Cells(16).Value = ""
+                DGVServicos.Rows(e.RowIndex).Cells(17).Value = mskOR.Text
+            Else
+                MsgBox("ESTE SERVIÇO NÃO ESTA DEFINICO")
+            End If
+        End If
+    End Sub
+
+End Class
